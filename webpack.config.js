@@ -1,15 +1,18 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = (env, argv) => {
+const __dirname = new URL('.', import.meta.url).pathname;
+
+export default (env, argv) => {
   const mode = argv.mode || 'development';
 
   return {
-    mode: mode,
-    entry: './src/index.ts',
+    mode,
+    entry: './src/app.ts',
     output: {
       filename: 'bundle.js',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, './dist'),
+      publicPath: '/',
     },
     module: {
       rules: [
@@ -36,7 +39,7 @@ module.exports = (env, argv) => {
     ],
     devServer: {
       static: {
-        directory: path.join(__dirname, 'dist'),
+        directory: path.join(__dirname, './dist'),
       },
       compress: true,
       port: 9000,
