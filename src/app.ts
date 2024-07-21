@@ -1,15 +1,9 @@
-import DocumentStore from './store/DocumentStore';
-import { Document } from './models/document';
-import { CardDocument } from './components/CardDocument/CardDocument';
+import { ListDocument } from './components/ListDocument/ListDocument';
 
-async function fetchAndDisplayDocuments() {
-  const documents = await DocumentStore.fetchDocuments();
-  const container = document.getElementById('documents-container');
+document.addEventListener('DOMContentLoaded', () => {
+  const app = document.getElementById('app')!;
 
-  documents.forEach((doc: Document) => {
-    const cardElement = CardDocument(doc);
-    container?.appendChild(cardElement);
-  });
-}
+  const documentList = ListDocument();
 
-fetchAndDisplayDocuments();
+  app.appendChild(documentList);
+});

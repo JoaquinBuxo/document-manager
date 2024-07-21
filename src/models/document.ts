@@ -9,8 +9,8 @@ export type Document = {
   Contributors: User[];
   Version: string;
   Attachments: string[];
-  CreatedAt: Date;
-  UpdatedAt: Date;
+  CreatedAt: string;
+  UpdatedAt: string;
 };
 
 export type Message = {
