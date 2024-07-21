@@ -1,4 +1,4 @@
-import { Document } from '../models/document';
+import { Document, Message } from '../models/document';
 
 const DocumentStore = (() => {
   let updatedDocuments: Document[] = [];
@@ -25,10 +25,68 @@ const DocumentStore = (() => {
     updatedDocuments.sort((a, b) => (a[key] > b[key] ? 1 : -1));
   };
 
+  const generateRandomDocument = (): Document => {
+    const randomTitle = `Document ${Math.floor(Math.random() * 1000)}`;
+    const randomVersion = `v${Math.floor(Math.random() * 10)}`;
+    const randomContributors = [
+      {
+        ID: `${Math.floor(Math.random() * 100)}`,
+        Name: `Contributor ${Math.floor(Math.random() * 100)}`,
+      },
+    ];
+    const randomAttachments = [`Attachment ${Math.floor(Math.random() * 100)}`];
+
+    return {
+      ID: `${Math.floor(Math.random() * 1000)}`,
+      Title: randomTitle,
+      Version: randomVersion,
+      Contributors: randomContributors,
+      Attachments: randomAttachments,
+      CreatedAt: new Date().toISOString(),
+      UpdatedAt: new Date().toISOString(),
+    };
+  };
+
+  const createDocument = (doc: Document) => {
+    const newDocument: Document = {
+      ID: doc.ID,
+      Title: doc.Title,
+      Contributors: doc.Contributors || [],
+      Version: doc.Version || '',
+      Attachments: doc.Attachments || [],
+      CreatedAt: new Date().toISOString(),
+      UpdatedAt: new Date().toISOString(),
+    };
+
+    updatedDocuments.push(newDocument);
+  };
+
+  const createDocumentNotification = (notification: Message) => {
+    const newDocument: Document = {
+      ID: notification.DocumentID,
+      Title: notification.DocumentTitle,
+      Contributors: [
+        {
+          ID: notification.UserId,
+          Name: notification.UserName,
+        },
+      ],
+      Version: 'N/A',
+      Attachments: [],
+      CreatedAt: notification.Timestamp,
+      UpdatedAt: notification.Timestamp,
+    };
+
+    updatedDocuments.push(newDocument);
+  };
+
   return {
     getDocuments,
     fetchDocuments,
     sortDocuments,
+    generateRandomDocument,
+    createDocument,
+    createDocumentNotification,
   };
 })();
 

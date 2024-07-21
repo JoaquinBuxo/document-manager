@@ -14,9 +14,9 @@ export type Document = {
 };
 
 export type Message = {
-  Timestamp: Date;
+  Timestamp: string;
   UserId: string;
   UserName: string;
-  DocumentId: string;
+  DocumentID: string;
   DocumentTitle: string;
 };

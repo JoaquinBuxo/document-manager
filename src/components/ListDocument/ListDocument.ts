@@ -1,6 +1,7 @@
 import DocumentStore from '../../store/DocumentStore';
 import { Document } from '../../models/document';
 import { CardDocument } from '../CardDocument/CardDocument';
+import { NotificationBox } from '../NotificationBox/NotificationBox';
 
 export const ListDocument = () => {
   const container = document.createElement('div');
@@ -9,6 +10,7 @@ export const ListDocument = () => {
     <button id="sort-by-title">Sort by Title</button>
     <button id="sort-by-createdAt">Sort by Created At</button>
     <ul id="list-documents"></ul>
+    <button id="create-document">Create New Document</button>
   `;
 
   const renderDocuments = () => {
@@ -35,6 +37,23 @@ export const ListDocument = () => {
       DocumentStore.sortDocuments('CreatedAt');
       renderDocuments();
     });
+
+  container.querySelector('#create-document')!.addEventListener('click', () => {
+    const newDocument = DocumentStore.generateRandomDocument();
+    DocumentStore.createDocument(newDocument);
+    renderDocuments();
+  });
+
+  const socket = new WebSocket('ws://localhost:8080/notifications');
+
+  socket.addEventListener('message', (event) => {
+    const notification = JSON.parse(event.data);
+    DocumentStore.createDocumentNotification(notification);
+    renderDocuments();
+
+    const notificationBox = NotificationBox('New document added');
+    document.body.appendChild(notificationBox);
+  });
 
   DocumentStore.fetchDocuments().then(renderDocuments);
 
