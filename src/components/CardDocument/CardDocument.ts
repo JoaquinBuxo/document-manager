@@ -3,13 +3,14 @@ import './CardDocument.css';
 
 export function CardDocument(doc: Document): HTMLElement {
   const card = document.createElement('div');
-  const title = document.createElement('h3');
-  const version = document.createElement('h4');
+  const containerName = document.createElement('div');
+  const title = document.createElement('h4');
+  const version = document.createElement('div');
   const contributors = document.createElement('ul');
   const attachments = document.createElement('ul');
 
   title.textContent = doc.Title;
-  version.textContent = doc.Version;
+  version.textContent = `Version ${doc.Version}`;
 
   doc.Contributors.forEach((contributor: User) => {
     const li = document.createElement('li');
@@ -23,8 +24,9 @@ export function CardDocument(doc: Document): HTMLElement {
     attachments.appendChild(li);
   });
 
-  card.appendChild(title);
-  card.appendChild(version);
+  card.appendChild(containerName);
+  containerName.appendChild(title);
+  containerName.appendChild(version);
   card.appendChild(contributors);
   card.appendChild(attachments);
 

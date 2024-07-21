@@ -1,5 +1,37 @@
 .document-card {
-  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: white;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.document-card div {
+  width: 40%;
+}
+
+.document-card ul {
+  width: 30%;
+  list-style-type: none;
+}
+
+.view-list .document-card {
   margin-bottom: 10px;
-  padding: 10px;
+}
+
+.view-grid .document-card {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.view-grid .document-card ul {
+  padding: 0;
+  width: 100%;
+}
+
+.view-grid .document-card div {
+  padding: 0;
+  width: 100%;
 }

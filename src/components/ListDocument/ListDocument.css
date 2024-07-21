@@ -1,0 +1,84 @@
+.view-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.view-grid {
+  display: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.header-select {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#list-documents {
+  max-height: 38em;
+  overflow: scroll;
+}
+
+#sort-options {
+  margin-right: 20px;
+  color: #6194f0;
+  border: none;
+  background: transparent;
+  font-size: 1em;
+}
+
+.header-view {
+  display: flex;
+}
+
+.view-button {
+  border: none;
+  cursor: pointer;
+  font-size: 2em;
+  background-color: #edeff3;
+}
+
+.view-button:hover {
+  background-color: #ddd;
+}
+
+.view-list,
+.view-grid .card {
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+#add-document {
+  background: #f4f5f7;
+  border: none;
+  color: #6194f0;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 20px;
+  width: 100%;
+}
+
+#add-document:hover {
+  background: #ddd;
+}

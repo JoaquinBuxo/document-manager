@@ -21,8 +21,9 @@ const DocumentStore = (() => {
     return updatedDocuments;
   };
 
-  const sortDocuments = (key: keyof Document) => {
-    updatedDocuments.sort((a, b) => (a[key] > b[key] ? 1 : -1));
+  const sortDocuments = (sortBy: keyof Document) => {
+    console.log(sortBy);
+    updatedDocuments.sort((a, b) => (a[sortBy] > b[sortBy] ? 1 : -1));
   };
 
   const generateRandomDocument = (): Document => {

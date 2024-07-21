@@ -1,3 +1,8 @@
 body {
-  background-color: green;
+  font-family: Arial, sans-serif;
+  background-color: #edeff3;
+  margin: 0;
+  padding: 0;
+  color: #2e394a;
+  padding: 5% 15%;
 }
