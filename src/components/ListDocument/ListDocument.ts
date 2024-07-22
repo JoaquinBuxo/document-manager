@@ -1,11 +1,12 @@
 import DocumentStore from '../../store/DocumentStore';
 import { NotificationBox } from '../NotificationBox/NotificationBox';
-import { renderDocuments } from '../../utils/RenderDocuments';
 import './ListDocument.css';
+import { renderDocuments } from '../../utils/RenderDocuments';
 
 export const ListDocument = () => {
   const container = document.createElement('div');
   container.innerHTML = `
+    <div id="loading" style="display: none;">Loading...</div>
     <div id="list-documents"></div>
     <button id="add-document">+ Add document</button>
   `;
@@ -15,6 +16,7 @@ export const ListDocument = () => {
     DocumentStore.createDocument(newDocument);
     renderDocuments(DocumentStore.getViewDocuments());
     const listDocumentsElement = container.querySelector('#list-documents')!;
+    container.style;
     listDocumentsElement.scrollTop = listDocumentsElement.scrollHeight;
   });
 
@@ -29,7 +31,17 @@ export const ListDocument = () => {
     document.body.appendChild(notificationBox);
   });
 
-  DocumentStore.fetchDocuments().then(() => renderDocuments);
+  const loadingElement = container.querySelector('#loading')! as HTMLDivElement;
+  loadingElement.style.display = 'block';
+
+  DocumentStore.fetchDocuments()
+    .then(() => {
+      renderDocuments(DocumentStore.getViewDocuments());
+      loadingElement.style.display = 'none';
+    })
+    .catch((error) => {
+      console.error('Error loading documents:', error);
+    });
 
   return container;
 };
