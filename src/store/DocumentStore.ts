@@ -2,6 +2,7 @@ import { Document, Message } from '../models/document';
 
 const DocumentStore = (() => {
   let updatedDocuments: Document[] = [];
+  let viewDocuments: 'list' | 'grid' = 'list';
 
   const fetchDocuments = async (): Promise<Document[]> => {
     try {
@@ -22,7 +23,6 @@ const DocumentStore = (() => {
   };
 
   const sortDocuments = (sortBy: keyof Document) => {
-    console.log(sortBy);
     updatedDocuments.sort((a, b) => (a[sortBy] > b[sortBy] ? 1 : -1));
   };
 
@@ -49,17 +49,7 @@ const DocumentStore = (() => {
   };
 
   const createDocument = (doc: Document) => {
-    const newDocument: Document = {
-      ID: doc.ID,
-      Title: doc.Title,
-      Contributors: doc.Contributors || [],
-      Version: doc.Version || '',
-      Attachments: doc.Attachments || [],
-      CreatedAt: new Date().toISOString(),
-      UpdatedAt: new Date().toISOString(),
-    };
-
-    updatedDocuments.push(newDocument);
+    updatedDocuments.push(doc);
   };
 
   const createDocumentNotification = (notification: Message) => {
@@ -72,13 +62,21 @@ const DocumentStore = (() => {
           Name: notification.UserName,
         },
       ],
-      Version: 'N/A',
+      Version: '1.0',
       Attachments: [],
       CreatedAt: notification.Timestamp,
       UpdatedAt: notification.Timestamp,
     };
 
     updatedDocuments.push(newDocument);
+  };
+
+  const setViewDocuments = (view: 'list' | 'grid') => {
+    viewDocuments = view;
+  };
+
+  const getViewDocuments = () => {
+    return viewDocuments;
   };
 
   return {
@@ -88,6 +86,8 @@ const DocumentStore = (() => {
     generateRandomDocument,
     createDocument,
     createDocumentNotification,
+    setViewDocuments,
+    getViewDocuments,
   };
 })();
 

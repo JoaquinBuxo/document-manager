@@ -1,0 +1,40 @@
+header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.header-select {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.header-view {
+  display: flex;
+}
+
+.sort-select {
+  margin-right: 20px;
+  color: #6194f0;
+  border: none;
+  background: transparent;
+  font-size: 1em;
+}
+
+.view-button {
+  border: none;
+  cursor: pointer;
+  font-size: 2em;
+  background-color: #edeff3;
+}
+
+.view-button:hover {
+  background-color: #ddd;
+}
