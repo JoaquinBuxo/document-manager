@@ -18,7 +18,7 @@ export function CardDocument(doc: Document): HTMLElement {
   card.innerHTML = `
     <div>
       <h4>${doc.Title}</h4>
-      <div>Version ${doc.Version}</div>
+      <p>Version ${doc.Version}</p>
     </div>
     <ul>${contributors}</ul>
     <ul>${attachments}</ul>
