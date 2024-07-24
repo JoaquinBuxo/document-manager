@@ -79,4 +79,10 @@ describe('documentStore', () => {
 
     expect(documentStore.getDocuments()[0].Title).toBe('A Document');
   });
+
+  it('should set and get view as "grid"', () => {
+    documentStore.setViewDocuments('grid');
+
+    expect(documentStore.getViewDocuments()).toBe('grid');
+  });
 });

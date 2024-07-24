@@ -17,20 +17,27 @@ export const ListDocument = () => {
     renderDocuments(documentStore.getViewDocuments()),
   );
 
-  container.querySelector('#add-document')!.addEventListener('click', () => {
-    const newDocument = generateRandomDocument();
-    documentStore.createDocument(newDocument);
-    const listDocumentsElement = container.querySelector('#list-documents')!;
-    container.style;
-    listDocumentsElement.scrollTop = listDocumentsElement.scrollHeight;
-  });
+  const addDocument = container.querySelector('#add-document');
 
-  const loadingElement = container.querySelector('#loading')! as HTMLDivElement;
-  loadingElement.style.display = 'block';
+  if (addDocument) {
+    addDocument.addEventListener('click', () => {
+      const newDocument = generateRandomDocument();
+      documentStore.createDocument(newDocument);
+      const listDocumentsElement = container.querySelector('#list-documents')!;
+      container.style;
+      listDocumentsElement.scrollTop = listDocumentsElement.scrollHeight;
+    });
+  }
 
-  getAllDocuments().finally(() => {
-    loadingElement.style.display = 'none';
-  });
+  const loadingElement = container.querySelector('#loading') as HTMLDivElement;
+
+  if (loadingElement) {
+    loadingElement.style.display = 'block';
+
+    getAllDocuments().finally(() => {
+      loadingElement.style.display = 'none';
+    });
+  }
 
   return container;
 };
