@@ -1,9 +1,9 @@
 import { CardDocument } from '../components/CardDocument/CardDocument';
-import { Document } from '../models/document';
-import DocumentStore from '../store/DocumentStore';
+import { Document } from '../../../context/Documents/domain/Document';
+import { documentStore } from '../store/documentStore';
 
 export const renderDocuments = (view: 'list' | 'grid' = 'list') => {
-  const documents = DocumentStore.getDocuments();
+  const documents = documentStore.getDocuments();
   const listDocument = document.querySelector('#list-documents');
 
   if (listDocument) {

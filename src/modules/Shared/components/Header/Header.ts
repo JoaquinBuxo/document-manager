@@ -1,6 +1,5 @@
-import { Document } from '../../models/document';
-import DocumentStore from '../../store/DocumentStore';
-import { renderDocuments } from '../../utils/RenderDocuments';
+import { Document } from '../../../../context/Documents/domain/Document';
+import { documentStore } from '../../../Documents/store/documentStore';
 import './Header.css';
 
 export const Header = () => {
@@ -28,18 +27,15 @@ export const Header = () => {
 
   header.querySelector('#sort-options')!.addEventListener('change', (event) => {
     const sortBy = (event.target as HTMLSelectElement).value as keyof Document;
-    DocumentStore.sortDocuments(sortBy);
-    renderDocuments(DocumentStore.getViewDocuments());
+    documentStore.sortDocuments(sortBy);
   });
 
   header.querySelector('#view-list')!.addEventListener('click', () => {
-    DocumentStore.setViewDocuments('list');
-    renderDocuments(DocumentStore.getViewDocuments());
+    documentStore.setViewDocuments('list');
   });
 
   header.querySelector('#view-grid')!.addEventListener('click', () => {
-    DocumentStore.setViewDocuments('grid');
-    renderDocuments(DocumentStore.getViewDocuments());
+    documentStore.setViewDocuments('grid');
   });
 
   return header;

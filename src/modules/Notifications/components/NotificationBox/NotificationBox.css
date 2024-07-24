@@ -8,3 +8,10 @@
   background-color: #f5f5f5;
   z-index: 10;
 }
+
+.notification-count {
+  background-color: #4c87ef;
+  border-radius: 15px;
+  color: white;
+  padding: 5px;
+}

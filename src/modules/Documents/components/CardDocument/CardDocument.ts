@@ -1,4 +1,4 @@
-import { Document, User } from '@/src/models/document';
+import { Document, User } from '../../../../context/Documents/domain/Document';
 import './CardDocument.css';
 
 export function CardDocument(doc: Document): HTMLElement {

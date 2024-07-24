@@ -12,11 +12,3 @@ export type Document = {
   CreatedAt: string;
   UpdatedAt: string;
 };
-
-export type Message = {
-  Timestamp: string;
-  UserId: string;
-  UserName: string;
-  DocumentID: string;
-  DocumentTitle: string;
-};
