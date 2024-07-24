@@ -1,8 +1,8 @@
 import { documentStore } from '../../store/documentStore';
-import './ListDocument.css';
 import { renderDocuments } from '../../utils/renderDocuments';
 import { serviceDocuments } from '../../services/serviceDocuments';
 import { generateRandomDocument } from '../../utils/generateRandomDocument';
+import './ListDocument.css';
 
 export const ListDocument = () => {
   const { getAllDocuments } = serviceDocuments();
