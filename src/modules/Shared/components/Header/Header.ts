@@ -25,16 +25,16 @@ export const Header = () => {
     </header>
   `;
 
-  header.querySelector('#sort-options')!.addEventListener('change', (event) => {
+  header.querySelector('#sort-options')?.addEventListener('change', (event) => {
     const sortBy = (event.target as HTMLSelectElement).value as keyof Document;
     documentStore.sortDocuments(sortBy);
   });
 
-  header.querySelector('#view-list')!.addEventListener('click', () => {
+  header.querySelector('#view-list')?.addEventListener('click', () => {
     documentStore.setViewDocuments('list');
   });
 
-  header.querySelector('#view-grid')!.addEventListener('click', () => {
+  header.querySelector('#view-grid')?.addEventListener('click', () => {
     documentStore.setViewDocuments('grid');
   });
 
